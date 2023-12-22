@@ -17,57 +17,38 @@ namespace RNRAssessment.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Breakdown>>> GetBreakdown()
+        public IActionResult GetBreakdowns()
         {
-            if (_breakdownContext.Breakdowns == null)
-            {
-                return NotFound();
-            }
-            return await _breakdownContext.Breakdowns.ToListAsync();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Breakdown>> GetBreakdown(int id)
-        {
-            if (_breakdownContext.Breakdowns == null)
-            {
-                return NotFound();
-            }
-            var employee = await _breakdownContext.Breakdowns.FindAsync(id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
-            return employee;
+            var breakdowns = _breakdownContext.Breakdowns.ToList();
+            return Ok(breakdowns);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Breakdown>> PostBreakdown(int id, Breakdown breakdown)
+        public IActionResult CreateBreakdown([FromBody] Breakdown breakdown)
         {
             _breakdownContext.Breakdowns.Add(breakdown);
-            await _breakdownContext.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetBreakdown), new { id = breakdown.Id }, breakdown);
+            _breakdownContext.SaveChanges();
+            return Ok(breakdown);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutBreakdown(int id, Breakdown breakdown)
+        public IActionResult UpdateBreakdown(int id, [FromBody] Breakdown breakdown)
         {
-            if (id != breakdown.Id)
+            var existingBreakdown = _breakdownContext.Breakdowns.Find(id);
+            if (existingBreakdown == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _breakdownContext.Entry(breakdown).State = EntityState.Modified;
-            try
-            {
-                await _breakdownContext.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                throw;
-            }
-            return Ok();
+            existingBreakdown.BreakdownReference = breakdown.BreakdownReference;
+            existingBreakdown.CompanyName = breakdown.CompanyName;
+            existingBreakdown.DriverName = breakdown.DriverName;
+            existingBreakdown.RegistrationNumber = breakdown.RegistrationNumber;
+            existingBreakdown.BreakdownDate = breakdown.BreakdownDate;
+
+            _breakdownContext.SaveChanges();
+
+            return Ok(existingBreakdown);
         }
     }
 }
