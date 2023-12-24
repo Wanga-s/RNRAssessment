@@ -6,8 +6,12 @@ namespace RNRAssessment.UI.Models
 {
     public class BreakdownModel
     {
+        public BreakdownModel() {
+            Id            = 0;
+            BreakdownDate = DateTime.Now;
+        }
         [Key]
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
         [Required]
         [Remote("CheckForBreakdownReference", "Breakdown",ErrorMessage ="Breakdown Reference already exists",AdditionalFields = "Id")]
         [DisplayName("Breakdown Reference")]

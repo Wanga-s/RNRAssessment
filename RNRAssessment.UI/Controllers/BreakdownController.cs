@@ -31,7 +31,8 @@ namespace RNRAssessment.UI.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            BreakdownModel breakdownModel= new BreakdownModel();    
+            return View(breakdownModel);
         }
 
         [HttpPost]
