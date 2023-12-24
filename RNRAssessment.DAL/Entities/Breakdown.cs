@@ -6,7 +6,7 @@ namespace RNRAssessment.DAL
     {
         [Key]
         public int Id { get; set; }
-        public string? BreakdownReference { get; set; }
+        public required string BreakdownReference { get; set; }
         public string? CompanyName { get; set; }
         public string? DriverName { get; set; }
         public string? RegistrationNumber { get; set; }

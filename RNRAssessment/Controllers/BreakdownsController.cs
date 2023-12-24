@@ -49,6 +49,10 @@ namespace RNRAssessment.Controllers
         [Produces("application/json",Type=typeof(Breakdown))]
         public IActionResult CreateBreakdown([FromBody] Breakdown breakdown)
         {
+            if (_breakdownLogic.BreakdownReferenceExists(breakdown.BreakdownReference))
+            {
+                return BadRequest();
+            }
             Breakdown addedBreakdown=_breakdownLogic.InsertBreakdown(breakdown);
             return Ok(addedBreakdown);
         }
@@ -57,7 +61,7 @@ namespace RNRAssessment.Controllers
         [Produces("application/json", Type = typeof(Breakdown))]
         public IActionResult UpdateBreakdown([FromBody] Breakdown breakdown)
         {
-            if (!_breakdownLogic.BreakdownExists(breakdown.Id))
+            if (!_breakdownLogic.BreakdownExists(breakdown.Id) || !_breakdownLogic.BreakdownReferenceExists(breakdown.BreakdownReference))
             {
                 return NotFound();
             }
