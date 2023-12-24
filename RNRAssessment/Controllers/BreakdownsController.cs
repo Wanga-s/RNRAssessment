@@ -25,6 +25,16 @@ namespace RNRAssessment.Controllers
             return Ok(breakdowns);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetBreakdownById(int id) { 
+            Breakdown? breakdown=_breakdownLogic.GetBreakdown(id);
+            if(breakdown == null)
+            {
+                return NotFound();
+            }
+            return Ok(breakdown);
+        }
+
         [HttpPost("Create")]
         [Produces("application/json",Type=typeof(Breakdown))]
         public IActionResult CreateBreakdown([FromBody] Breakdown breakdown)

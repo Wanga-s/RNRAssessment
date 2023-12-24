@@ -1,5 +1,9 @@
+using RNRAssessment.UI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IBreakdownService,BreakdownService>();
+builder.Services.AddHttpClient();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
