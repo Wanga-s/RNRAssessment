@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace RNRAssessment.DAL
 {
-    public class GenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntity : class
     {
-        internal ApplicationDbContext context;
-        internal DbSet<TEntity> dbSet;
+        private ApplicationDbContext context;
+        protected DbSet<TEntity> dbSet;
 
         public GenericRepository(ApplicationDbContext context)
         {

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 string connection = builder.Configuration.GetConnectionString("RNRAssessment");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(connection));
-
+builder.Services.InjectRepositories();
 builder.Services.InjectBusinessLogic();
 
 builder.Services.AddControllers();
