@@ -18,31 +18,31 @@ namespace RNRAssessment.Controllers
         }
 
         [HttpGet]
+        [Produces("application/json",Type =typeof(IEnumerable<Breakdown>))]
         public IActionResult GetBreakdowns()
         {
             IEnumerable<Breakdown> breakdowns = _breakdownLogic.GetBreakdowns();
             return Ok(breakdowns);
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
+        [Produces("application/json",Type=typeof(Breakdown))]
         public IActionResult CreateBreakdown([FromBody] Breakdown breakdown)
         {
-            _breakdownLogic.InsertBreakdown(breakdown);
-            return Ok(breakdown);
+            Breakdown addedBreakdown=_breakdownLogic.InsertBreakdown(breakdown);
+            return Ok(addedBreakdown);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateBreakdown(int id, [FromBody] Breakdown breakdown)
+        [HttpPut("Update")]
+        [Produces("application/json", Type = typeof(Breakdown))]
+        public IActionResult UpdateBreakdown([FromBody] Breakdown breakdown)
         {
-            var existingBreakdown = _breakdownLogic.GetBreakdown(id);
-            if (existingBreakdown == null)
+            if (!_breakdownLogic.BreakdownExists(breakdown.Id))
             {
                 return NotFound();
             }
-
             _breakdownLogic.Update(breakdown);
-
-            return Ok(existingBreakdown);
+            return Ok(breakdown);
         }
     }
 }

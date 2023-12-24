@@ -52,9 +52,10 @@ namespace RNRAssessment.DAL
             return dbSet.Find(id);
         }
 
-        public virtual void Insert(TEntity entity)
+        public virtual TEntity Insert(TEntity entity)
         {
-            dbSet.Add(entity);
+            TEntity entityAdded=dbSet.Add(entity).Entity;
+            return entityAdded;
         }
 
         public virtual void Delete(object id)
@@ -76,6 +77,11 @@ namespace RNRAssessment.DAL
         {
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
+        }
+
+        public virtual bool Any(Expression<Func<TEntity, bool>> filter = null)
+        {
+            return dbSet.Any(filter);
         }
     }
 }

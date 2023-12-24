@@ -13,6 +13,7 @@ namespace RNRAssessment.BusinessLogic
         public static void InjectRepositories(this IServiceCollection Services)
         {
             Services.AddScoped<IBreakdownRepository,BreakdownRepository>();
+            Services.AddScoped<IUnitOfWork,UnitOfWork>();
         }
     }
 }

@@ -18,14 +18,20 @@ namespace RNRAssessment.BusinessLogic
             _unitOfWork = unitOfWork;
         }
         #region Create
-        public void InsertBreakdown(Breakdown newBreakdown)
+        public Breakdown InsertBreakdown(Breakdown newBreakdown)
         {
-            _repository.Insert(newBreakdown);
+            Breakdown breakdown=_repository.Insert(newBreakdown);
             _unitOfWork.SaveChanges();
+            return breakdown;
         }
         #endregion Create
 
         #region Read
+
+        public bool BreakdownExists(int BreakdownId)
+        {
+            return _repository.Any(b=>b.Id==BreakdownId);
+        }
         public IEnumerable<Breakdown> GetBreakdowns()
         {
             return _repository.Get();
@@ -33,7 +39,7 @@ namespace RNRAssessment.BusinessLogic
 
         public Breakdown? GetBreakdown(int BreakdownId)
         {
-            return _repository.Get(b=>b.Id==BreakdownId).FirstOrDefault();
+            return _repository.GetByID(BreakdownId);
         }
         #endregion Read
 
