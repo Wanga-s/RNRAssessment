@@ -5,9 +5,8 @@ using RNRAssessment.DAL;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-string connection = builder.Configuration.GetConnectionString("RNRAssessment");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(connection));
+options.UseSqlServer(builder.Configuration.GetConnectionString("RNRAssessment")));
 builder.Services.InjectRepositories();
 builder.Services.InjectBusinessLogic();
 
