@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using RNRAssessment.Models;
+using RNRAssessment.BusinessLogic;
+using RNRAssessment.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+string connection = builder.Configuration.GetConnectionString("RNRAssessment");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(connection));
 
-builder.Services.AddDbContext<BreakdownContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("RNRAssessment")));
+builder.Services.InjectBusinessLogic();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

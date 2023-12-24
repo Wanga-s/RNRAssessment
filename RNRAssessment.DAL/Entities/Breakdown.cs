@@ -1,7 +1,10 @@
-﻿namespace RNRAssessment.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RNRAssessment.DAL
 {
     public class Breakdown
     {
+        [Key]
         public int Id { get; set; }
         public string? BreakdownReference { get; set; }
         public string? CompanyName { get; set; }

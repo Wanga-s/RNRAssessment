@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RNRAssessment", "RNRAssessment\RNRAssessment.csproj", "{3F7FC978-0DA0-465E-8D33-00152011AAE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNRAssessment.BusinessLogic", "RNRAssessment.BusinessLogic\RNRAssessment.BusinessLogic.csproj", "{61ADD861-E2BA-4921-A29D-92CEFE23F588}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RNRAssessment.BusinessLogic", "RNRAssessment.BusinessLogic\RNRAssessment.BusinessLogic.csproj", "{61ADD861-E2BA-4921-A29D-92CEFE23F588}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RNRAssessment.DAL", "RNRAssessment.DAL\RNRAssessment.DAL.csproj", "{5BEAD94E-82E1-466D-9465-052E64381B68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{61ADD861-E2BA-4921-A29D-92CEFE23F588}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61ADD861-E2BA-4921-A29D-92CEFE23F588}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61ADD861-E2BA-4921-A29D-92CEFE23F588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BEAD94E-82E1-466D-9465-052E64381B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BEAD94E-82E1-466D-9465-052E64381B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BEAD94E-82E1-466D-9465-052E64381B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BEAD94E-82E1-466D-9465-052E64381B68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

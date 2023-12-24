@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RNRAssessment.Models;
+using RNRAssessment.DAL;
 
 namespace RNRAssessment.Controllers
 {
@@ -9,9 +9,9 @@ namespace RNRAssessment.Controllers
     [ApiController]
     public class BreakdownsController : ControllerBase
     {
-        private readonly BreakdownContext _breakdownContext;
+        private readonly ApplicationDbContext _breakdownContext;
 
-        public BreakdownsController(BreakdownContext breakdownContext) 
+        public BreakdownsController(ApplicationDbContext breakdownContext) 
         { 
             _breakdownContext = breakdownContext;
         }

@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RNRAssessment.Models;
+using RNRAssessment.DAL;
 
 #nullable disable
 
-namespace RNRAssessment.Migrations
+namespace RNRAssessment.DAL.Migrations
 {
-    [DbContext(typeof(BreakdownContext))]
-    partial class BreakdownContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20231224114750_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace RNRAssessment.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RNRAssessment.Models.Breakdown", b =>
+            modelBuilder.Entity("RNRAssessment.DAL.Breakdown", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
