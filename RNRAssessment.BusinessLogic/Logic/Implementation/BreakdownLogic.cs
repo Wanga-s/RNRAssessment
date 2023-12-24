@@ -27,6 +27,11 @@ namespace RNRAssessment.BusinessLogic
         #endregion Create
 
         #region Read
+        public bool BreakdownReferenceExists(string BreakdownReference)
+        {
+            return _repository.Any(b => b.BreakdownReference==BreakdownReference);
+        }
+
 
         public bool BreakdownExists(int BreakdownId)
         {

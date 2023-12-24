@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RNRAssessment.BusinessLogic;
 using RNRAssessment.DAL;
+using RNRAssessment.Models;
 
 namespace RNRAssessment.Controllers
 {
@@ -23,6 +24,15 @@ namespace RNRAssessment.Controllers
         {
             IEnumerable<Breakdown> breakdowns = _breakdownLogic.GetBreakdowns();
             return Ok(breakdowns);
+        }
+
+        [HttpGet("BreakdownReference/{BreakdownReference}")]
+        [Produces("application/json",Type=typeof(ExistModel))]
+        public IActionResult BreakdownReferenceExists(string BreakdownReference)
+        {
+            ExistModel existModel = new ExistModel();
+            existModel.IsExist=_breakdownLogic.BreakdownReferenceExists(BreakdownReference);
+            return Ok(existModel);
         }
 
         [HttpGet("{id}")]

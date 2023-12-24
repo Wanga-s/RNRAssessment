@@ -10,6 +10,7 @@ namespace RNRAssessment.BusinessLogic
     public interface IBreakdownLogic
     {
         Breakdown InsertBreakdown(Breakdown newBreakdown);
+        bool BreakdownReferenceExists(string BreakdownReference);
         IEnumerable<Breakdown> GetBreakdowns();
         Breakdown? GetBreakdown(int BreakdownId);
         bool BreakdownExists(int BreakdownId);

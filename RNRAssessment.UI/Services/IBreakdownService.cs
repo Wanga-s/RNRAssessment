@@ -6,6 +6,7 @@ namespace RNRAssessment.UI.Services
     {
         Task<IEnumerable<BreakdownModel>?> GetBreakdownsAsync();
         Task<BreakdownModel?> GetBreakdownAsync(int BreakdownId);
+        Task<ExistModel?> BreakdownReferenceExistsAsync(string BreakdownReference);
         Task<BreakdownModel?> CreateBreakdownsAsync(BreakdownModel BreakdownModel);
         Task<BreakdownModel?> UpdateBreakdownsAsync(BreakdownModel breakdownModel);
     }

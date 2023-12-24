@@ -9,6 +9,7 @@ namespace RNRAssessment.UI.Models
         [Key]
         public int Id { get; set; } = 0;
         [Required]
+        [Remote("CheckForBreakdownReference", "Breakdown",ErrorMessage ="Breakdown Reference already exists",AdditionalFields = "Id")]
         [DisplayName("Breakdown Reference")]
         public string? BreakdownReference { get; set; }
         [DisplayName("Company Name")]

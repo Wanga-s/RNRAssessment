@@ -68,6 +68,24 @@ namespace RNRAssessment.UI.Services
             }
             return null;
         }
+
+        public async Task<ExistModel?> BreakdownReferenceExistsAsync(string BreakdownReference)
+        {
+            HttpClient client = _httpClientFactory.CreateClient();
+            string requestUrl = (_configuration.GetValue<string>("Endpoints:RnrAssessment")
+                + $"/api/Breakdowns/BreakdownReference/{BreakdownReference}");
+            client.BaseAddress = new Uri(requestUrl);
+            HttpResponseMessage response = await client.GetAsync(requestUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                ExistModel? item =
+                    JsonConvert
+                    .DeserializeObject<ExistModel>(
+                        await response.Content.ReadAsStringAsync());
+                return item;
+            }
+            return null;
+        }
         public async Task<BreakdownModel?> UpdateBreakdownsAsync(BreakdownModel breakdownModel)
         {
             HttpClient client = _httpClientFactory.CreateClient();

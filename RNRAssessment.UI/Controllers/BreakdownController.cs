@@ -19,6 +19,16 @@ namespace RNRAssessment.UI.Controllers
             return View(breakdownModels);
         }
 
+        public async Task<JsonResult> CheckForBreakdownReference(string BreakdownReference,int Id)
+        {
+            ExistModel? existModel = await _breakdownService.BreakdownReferenceExistsAsync(BreakdownReference);
+            if(existModel!=null && existModel.IsExist && Id==0)
+            {
+                return Json(false);
+            }
+            return Json(true);
+        }
+
         public IActionResult Create()
         {
             return View();
